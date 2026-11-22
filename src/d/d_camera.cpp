@@ -20,6 +20,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
+#include <algorithm>
 #include <cmath>
 #include <cstring>
 
@@ -11255,6 +11256,17 @@ static void store(camera_process_class* i_camera) {
         up = dCamera->Up();
         angle = dCamera->Bank();
         fovy = dCamera->Fovy();
+#if TARGET_PC
+        // Field of View setting: scale the view frustum (tan of the half-angle) so the game's own
+        // zoom changes stay proportional. Gameplay camera only; demo cameras are left untouched.
+        if (camera_id == 0) {
+            const f32 fovScale = std::clamp(dusk::getSettings().game.fieldOfView.getValue(), 0.5f, 2.0f);
+            if (fovScale != 1.0f && fovy > 0.0f && fovy < 179.0f) {
+                const f32 halfTan = tanf(MTXDegToRad(fovy) * 0.5f) * fovScale;
+                fovy = std::min(MTXRadToDeg(2.0f * atanf(halfTan)), 170.0f);
+            }
+        }
+#endif
     }
 
     if (eye.x == center.x && eye.z == center.z) {

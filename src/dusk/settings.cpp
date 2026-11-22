@@ -123,6 +123,7 @@ UserSettings g_userSettings = {
         .freeCameraYSensitivity {"game.freeCameraYSensitivity", 1.0f},
         .touchCameraXSensitivity {"game.touchCameraXSensitivity", 1.0f},
         .touchCameraYSensitivity {"game.touchCameraYSensitivity", 1.0f},
+        .fieldOfView {"game.fieldOfView", 1.0f},
         .debugFlyCam {"game.debugFlyCam", false},
         .debugFlyCamLockEvents {"game.debugFlyCamLockEvents", true},
         .allowBackgroundInput {"game.allowBackgroundInput", true},
@@ -308,6 +309,7 @@ void registerSettings() {
     Register(g_userSettings.game.freeCameraYSensitivity);
     Register(g_userSettings.game.touchCameraXSensitivity);
     Register(g_userSettings.game.touchCameraYSensitivity);
+    Register(g_userSettings.game.fieldOfView);
     Register(g_userSettings.game.minimalHUD);
     Register(g_userSettings.game.hudScale);
     Register(g_userSettings.game.pauseOnFocusLost,

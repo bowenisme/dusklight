@@ -288,6 +288,7 @@ struct UserSettings {
         ConfigVar<float> freeCameraYSensitivity;
         ConfigVar<float> touchCameraXSensitivity;
         ConfigVar<float> touchCameraYSensitivity;
+        ConfigVar<float> fieldOfView;
         ConfigVar<bool> debugFlyCam;
         ConfigVar<bool> debugFlyCamLockEvents;
         ConfigVar<bool> allowBackgroundInput;

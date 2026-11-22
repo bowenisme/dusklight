@@ -1011,6 +1011,12 @@ SettingsWindow::SettingsWindow(bool prelaunch) : mPrelaunch(prelaunch) {
 #endif
 
         leftPane.add_section("Camera");
+        config_percent_select(leftPane, rightPane, getSettings().game.fieldOfView,
+            "Field of View",
+            "Widens or narrows the gameplay camera's field of view.<br/><br/>100% is the original "
+            "game. Zooms (Hawkeye, first person, targeting) scale with it. Cutscenes are not "
+            "affected.",
+            70, 150, 5);
         addOption("Free Camera", getSettings().game.freeCamera,
             "Enables free camera control, letting you control the camera fully with the C-Stick.");
         config_percent_select(leftPane, rightPane, getSettings().game.freeCameraXSensitivity,
