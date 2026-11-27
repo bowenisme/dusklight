@@ -450,6 +450,11 @@ if (DUSK_ENABLE_CODE_MODS)
 
     if (DEFINED DUSK_PATCHABLE_ENTRY_FLAG)
         target_compile_options(dusklight PRIVATE ${DUSK_PATCHABLE_ENTRY_FLAG})
+        # Also give Dusklight's own code (UI, settings, etc.) patchable entries so mods that hook
+        # it (e.g. Twilit Essentials hooks dusk::ui::handle_event) can be prepatched on iOS.
+        if (TARGET dusk_internal)
+            target_compile_options(dusk_internal PRIVATE ${DUSK_PATCHABLE_ENTRY_FLAG})
+        endif ()
         foreach(jsystem_lib IN LISTS JSYSTEM_LIBRARIES)
             target_compile_options(${jsystem_lib} PRIVATE ${DUSK_PATCHABLE_ENTRY_FLAG})
         endforeach()
